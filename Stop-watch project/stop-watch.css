@@ -1,0 +1,38 @@
+body {
+  padding: 50px;
+  font-family: arial;
+  font-size: 50px;
+  font-weight: bold;
+  background-color: blueviolet;
+  color: white;
+  text-align: center;
+}
+
+.main-box {
+  display: grid;
+  align-items: center;
+}
+
+.test {
+  margin-bottom: 50px;
+}
+
+.start-button,
+.stop-button {
+  font-family: Sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 30px;
+  background-color: antiquewhite;
+  box-shadow: black 4px 3px;
+  cursor: pointer;
+}
+
+.start-button:hover,
+.stop-button:hover {
+  background-color: rgba(250, 235, 215, 0.805);
+  box-shadow: black 3px 4px;
+}
+
