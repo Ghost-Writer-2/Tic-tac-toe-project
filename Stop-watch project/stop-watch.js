@@ -19,96 +19,122 @@ let start = false;
 let isPaused = false;
 let intervalId;
 
-test.innerHTML = `0${hours} : 0${minutes} : 0${seconds} : 0${miliseconds}`;
+test.innerHTML = `0${hours} : 0${minutes} : 0${seconds} .0${miliseconds}`;
 
 startButton.addEventListener('click', () => {
+  if (!start) {
+    startTimer();
 
-  /*
-  let hours = clock.hours
-  let minutes = clock.minutes
-  let seconds = clock.seconds
-  let miliseconds = clock.miliseconds
-  */
+    /*if () ()
+    pauseTimer();
+    */
+    isPaused = true;
+    return start = true;
 
-  if (start === false) {
-    intervalId = setInterval(() => {
+  } 
 
-      if (miliseconds < 100) {
-        miliseconds ++
-      }
-  
-      if (miliseconds >= 100) {
-        seconds++;
-        miliseconds = 0;
-      } 
-      
-      if (seconds >= 60) {
-        minutes++
-        seconds = 0;
-      }
-      
-      if (minutes >= 60) {
-        hours++
-        minutes = 1
-      }
-      
-      
-      if (seconds >= 10 && minutes >= 10 && hours >= 10) {
-        test.innerHTML = `${hours} : ${minutes} : ${seconds} : ${miliseconds}`;
-      
-        } else if (seconds >= 10 && minutes < 10 && hours < 10) {
-          test.innerHTML = `0${hours} : 0${minutes} : ${seconds} : ${miliseconds}`;
-      
-        } else if (seconds >= 10 && minutes >= 10 && hours < 10) {
-          test.innerHTML = `0${hours} : ${minutes} : ${seconds} : ${miliseconds}`;
-      
-        } else if (seconds >= 10 && minutes < 10 && hours >= 10) {
-          test.innerHTML = `${hours} : 0${minutes} : ${seconds} : ${miliseconds}`;
-      
-        } else if (seconds < 10 && minutes >= 10 && hours >= 10) {
-          test.innerHTML = `${hours} : ${minutes} : 0${seconds} : ${miliseconds}`;
-      
-        } else if(seconds < 10 && minutes < 10 && hours >= 10) {
-          test.innerHTML = `${hours} : 0${minutes} : 0${seconds} : ${miliseconds}`;
-      
-        } else if (seconds < 10 && minutes >= 10 && hours < 10) {
-          test.innerHTML = `0${hours} : ${minutes} : ${seconds} : ${miliseconds}`;
-      
-        } else {
-          test.innerHTML = `0${hours} : 0${minutes} : 0${seconds} : ${miliseconds}`;
-        }
-        
-      }, 10);
+  if (isPaused) {
+    pauseTimer();
+    isPaused = false;
+  } else if (!isPaused) {
+    startTimer();
 
-   //startButton.innerHTML = 'Pause';
-   start = true;
-   return intervalId;
-
-  } else if (start === true) {
-    
-    //startButton.innerHTML = 'Resume';
-
-    //clearInterval(intervalId);
-
-    test.innerHTML = `0${hours} : 0${minutes} : 0${seconds}`;
-    //start = false;
-    
+    isPaused = true;
   }
 
-  return start;
 })
 
 resetButton.addEventListener('click', () => {
-  if (start = true) {
-    clearInterval(intervalId);
-    test.innerHTML = `0${hours = 0} : 0${minutes = 0} : 0${seconds = 0} : 0${miliseconds = 0}`;
-
+  if (start) {
+    resetTimer();
     start = false;
+
+    startButton.innerHTML = 'Start';
   }
- 
+
   return start;
 })
 
+ 
 
+// Start Function
 
+function startTimer() {
+  intervalId = setInterval(() => {
 
+    if (miliseconds < 100) {
+      miliseconds ++
+    }
+
+    if (miliseconds >= 100) {
+      seconds++;
+      miliseconds = 0;
+    } 
+    
+    if (seconds >= 60) {
+      minutes++
+      seconds = 0;
+    }
+    
+    if (minutes >= 60) {
+      hours++
+      minutes = 1
+    }
+    
+    display();
+      
+    }, 10);
+
+    startButton.innerHTML = 'Pause';
+    return intervalId;
+  
+} 
+
+// Pause Function
+
+function pauseTimer() {
+    startButton.innerHTML = 'Play';
+
+    clearInterval(intervalId);
+    display();
+}
+
+// Reset Function
+
+function resetTimer() {
+      clearInterval(intervalId);
+      test.innerHTML = `0${hours = 0} : 0${minutes = 0} : 0${seconds = 0} .0${miliseconds = 0}`;
+}
+
+function display() {
+  if (seconds >= 10 && minutes >= 10 && hours >= 10 && miliseconds >= 10) {
+    test.innerHTML = `${hours} : ${minutes} : ${seconds} .${miliseconds}`;
+  
+    } else if (seconds >= 10 && minutes < 10 && hours < 10 && miliseconds < 10) {
+      test.innerHTML = `0${hours} : 0${minutes} : ${seconds} .0${miliseconds}`;
+  
+    } else if (seconds >= 10 && minutes >= 10 && hours < 10 && miliseconds >= 10) {
+      test.innerHTML = `0${hours} : ${minutes} : ${seconds} .${miliseconds}`;
+
+    } else if (seconds >= 10 && minutes < 10 && hours < 10 && miliseconds >= 10) {
+      test.innerHTML = `0${hours} : 0${minutes} : ${seconds} .${miliseconds}`;
+  
+    } else if (seconds >= 10 && minutes < 10 && hours >= 10 && miliseconds < 10) {
+      test.innerHTML = `${hours} : 0${minutes} : ${seconds} .0${miliseconds}`;
+  
+    } else if (seconds < 10 && minutes >= 10 && hours >= 10 && miliseconds >= 10) {
+      test.innerHTML = `${hours} : ${minutes} : 0${seconds} .${miliseconds}`;
+
+    } else if (seconds < 10 && minutes < 10 && hours < 10 && miliseconds >= 10) {
+      test.innerHTML = `0${hours} : 0${minutes} : 0${seconds} .${miliseconds}`;
+  
+    } else if(seconds < 10 && minutes < 10 && hours >= 10 && miliseconds < 10) {
+      test.innerHTML = `${hours} : 0${minutes} : 0${seconds} .0${miliseconds}`;
+  
+    } else if (seconds < 10 && minutes >= 10 && hours < 10 && miliseconds >= 10) {
+      test.innerHTML = `0${hours} : ${minutes} : ${seconds} .${miliseconds}`;
+  
+    } else {
+      test.innerHTML = `0${hours} : 0${minutes} : 0${seconds} .0${miliseconds}`;
+    }
+}
