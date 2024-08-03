@@ -141,6 +141,7 @@ function checkWin(num) {
 
 function endGame() {
   document.body.innerHTML = `
+    <h1 class="game-title">Tic Tac Toe Game</h1>
     <div class="end-game-box">
      <p class="end-game">Game Over ${winner} wins.
         <br>  Refresh to rematch 
