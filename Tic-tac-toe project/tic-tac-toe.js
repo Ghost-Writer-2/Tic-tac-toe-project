@@ -1,33 +1,59 @@
 const gridCells = document.querySelectorAll('.cell');
+const displayText = document.querySelector('.display-text');
 let text = 'x';
 let winner;
 
 gridCells.forEach((value, i, num) => {
-  value.addEventListener('click', () => {
+  // I use the timer to continually run the checkWin() function and end the game if there is a winner. 
+  // I know it's wrong..but I'm a noob and
+  
+  const checkingGame = setInterval(() => {
+    console.log('hi')
     checkWin(num);
+  
+    if (checkWin(num) !== undefined) {
+      console.log('hell')
+      clearInterval(checkingGame);
+    }
+  }, 1000)
+
+  // Setting a fail safe incase there is no response from a player after 10mins 
+
+  setTimeout(() => {
+    checkDraw()
+    clearInterval(checkingGame);
+  }, 100000)
+
+  value.addEventListener('click', () => {
+   
+
+    // checkWin(num);
     if (value.textContent === '') {
       value.textContent = text;
 
       if (text === 'x') {
         text = 'o';
+        displayText.textContent = 'Player O\'s turn'
       } else if (text === 'o') {
         text = 'x';
+         displayText.textContent = 'Player X\'s turn'
       }
     } else if (value.textContent !== '') {
-      document.body.innerHTML = `
-    <div class="end-game-box">
-     <p class="end-game">Game Over It's a tie.
-        <br>  Refresh to rematch 
-      </p>
-    </div>
-   `;
+      setInterval(() => {
+        if (value.textContent !== '') {
+          checkDraw()
+        }
+      }, 1000)
     }
-
-    console.log(winner);
   })
 })
 
+
+
+
+
 function checkWin(num) {
+  // Check Player X
   // Check row
 
   if ((num[0].textContent === 'x' && num[1].textContent === 'x') && num[2].textContent === 'x') {
@@ -105,19 +131,13 @@ function checkWin(num) {
   } else if ((num[2].textContent === 'o' && num[4].textContent === 'o') && num[6].textContent === 'o') {
     winner = 'Player O';
     endGame();
-
-  // } else {
-  //   document.body.innerHTML = `
-  //   <div class="end-game-box">
-  //    <p class="end-game">Game Over It's a tie.
-  //       <br>  Refresh to rematch 
-  //     </p>
-  //   </div>
-  //  `
   }
 
   return winner;
 }
+
+
+
 
 function endGame() {
   document.body.innerHTML = `
@@ -127,4 +147,14 @@ function endGame() {
       </p>
     </div>
    `; 
+};
+
+function checkDraw() {
+  document.body.innerHTML = `
+    <div class="end-game-box">
+     <p class="end-game">Game Over It's a tie.
+        <br>  Refresh to rematch 
+      </p>
+    </div>
+   `;
 };
