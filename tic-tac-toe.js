@@ -5,7 +5,7 @@ let winner;
 
 gridCells.forEach((value, i, num) => {
   // I use the timer to continually run the checkWin() function and end the game if there is a winner. 
-  // I know it's wrong..but I'm a noob and
+  // I know it's wrong..but I'm a noob and it's the best I can do
   
   const checkingGame = setInterval(() => {
     console.log('hi')
@@ -19,10 +19,13 @@ gridCells.forEach((value, i, num) => {
 
   // Setting a fail safe incase there is no response from a player after 10mins 
 
+ if (winner === undefined) {
   setTimeout(() => {
     checkDraw()
     clearInterval(checkingGame);
   }, 100000)
+ }
+ 
 
   value.addEventListener('click', () => {
    
@@ -39,11 +42,7 @@ gridCells.forEach((value, i, num) => {
          displayText.textContent = 'Player X\'s turn'
       }
     } else if (value.textContent !== '') {
-      setInterval(() => {
-        if (value.textContent !== '') {
           checkDraw()
-        }
-      }, 1000)
     }
   })
 })
