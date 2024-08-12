@@ -3,7 +3,7 @@ const displayText = document.querySelector('.display-text');
 let text = 'x';
 let winner;
 
-console.log(gridCells[0].innerH);
+// console.log(gridCells[0].innerH);
 
 
 
@@ -19,13 +19,19 @@ const winningCombo = [
 ];
 
 
-gridCells.forEach((value, i, num) => {
+// gridCells.forEach((value, i, num) => {
  
-})
+// })
   
 
 
-function checkWin(i) {
-  let [a, b, c] = winningCombo[i];
-  console.log(a, b, c)
-}
+// function checkWin() {
+//   for (const combo of winningCombo) {
+//     let [a, b, c] = combo;
+//     if ((num[a].textContent === num[b].textContent) === num[c].textContent) {
+//       console.log('happy');
+//     }
+//   }
+// }
+
+// checkWin()
