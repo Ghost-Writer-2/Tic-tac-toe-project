@@ -27,7 +27,8 @@
 ## Problems Encountered
   When there is a winner, a cell has to be clicked for the winner to be announced which is bad. The same problem applies to the ``checkDraw()`` function i.e A draw can't be declared unless a cell is clicked. 
 
-  The reason for this is the ``checkWin()`` and ``checkDraw()`` function is run with an event listener in each grid cell. I am currently thinking of a solution. 
+  The reason for this is the ``checkWin()`` and ``checkDraw()`` function is run with a click event listener in each grid cell. So unless a cell is clicked, the function won't run
+  I am currently thinking of a solution. 
 
 ## Areas to Improve 
   - Replace the ``setInterval()`` and ``setTimeout()`` solution with a better solution
