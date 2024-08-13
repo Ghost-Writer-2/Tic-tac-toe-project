@@ -1,4 +1,4 @@
-const gridCells = document.querySelectorAll('.cell');
+const gridCells = Array.from(document.querySelectorAll('.cell'));
 const displayText = document.querySelector('.display-text');
 let [playerX, playerO] = ['X', 'O']
 let currentPlayer = 'X'
@@ -24,15 +24,13 @@ function checkWin(num) {
 
     // check player X
     if ((num[a].textContent === playerX) && ((num[b].textContent === num[a].textContent) && num[c].textContent === num[a].textContent)) {
-      winner = playerX;
-      endGame();
-      return;
+      winner = 'playerX';
+      endGame(num[a], num[b], num[c], winner);
 
     // check player O
     } else if ((num[a].textContent === playerO) && ((num[b].textContent === num[a].textContent) && num[c].textContent === num[a].textContent)) {
-      winner = playerO;
-      endGame();
-      return;
+      winner = 'playerO';
+      endGame(num[a], num[b], num[c], winner);
     }
   }
 
@@ -42,22 +40,50 @@ function checkWin(num) {
 
 
 gridCells.forEach((value, index, num) => {
+  
 
-  value.addEventListener('click', () => {
-   
+  value.addEventListener('click', (e) => {
+    let winner = checkWin(num);
+    // console.log(checkWin(num));
 
-    checkWin(num);
-    if (value.textContent === '') {
-      value.textContent = currentPlayer;
-    } else if (value.textContent !== '') {
+    if (winner !== undefined) {
       return;
-    }
 
-    if (currentPlayer === playerO) {
-      currentPlayer = playerX;
-      
     } else {
-      currentPlayer = playerO;
+      playGame(value, num);
     }
+    
+    if (value.style.backgroundColor === 'rgba(204, 204, 204, 0.3)') {
+      displayText.textContent = `${value.textContent} wins`
+    }
+   
   })
+  
 })
+
+
+
+function playGame(value, num) {
+  if (value.textContent === '') {
+    value.textContent = currentPlayer;
+
+  } else if (value.textContent !== '') {
+    return;
+  }
+
+  if (currentPlayer === playerO) {
+    currentPlayer = playerX;
+    checkWin(num);
+    displayText.textContent = 'X\'s turn'
+  } else {
+    currentPlayer = playerO;
+    checkWin(num);
+    displayText.textContent = 'O\'s turn'
+  }
+}
+
+function endGame(valueA, valueB, valueC) {
+  valueA.style.backgroundColor = 'rgba(204, 204, 204, 0.3)';
+  valueB.style.backgroundColor = 'rgba(204, 204, 204, 0.3)';
+  valueC.style.backgroundColor = 'rgba(204, 204, 204, 0.3)';
+}
