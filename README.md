@@ -22,16 +22,18 @@
   In this project I attempted to create a tic tac toe game with vanilla js as a learning project using the following concepts
   - I used concepts like control statements `` if...else`` to check if cells are empty, to also  check if there is a winner or if there is none.
   - I used an ``array`` to store all the possible winning conditions of the game
-  - I used a ``setInterval()`` and ``setTimeout()`` to contiue running the ``checkWin()`` function constantly as a solution to a problem I encountered. Although my solution to the problem is bad practice, at the moment there is no other way I can solve the problem on my own. 
+  - ~~I used a ``setInterval()`` and ``setTimeout()`` to contiue running the ``checkWin()`` function constantly as a solution to a problem I encountered. Although my solution to the problem is bad practice, at the moment there is no other way I can solve the problem on my own.~~ 
 
 ## Problems Encountered
-  When there is a winner, a cell has to be clicked for the winner to be announced which is bad. The same problem applies to the ``checkDraw()`` function i.e A draw can't be declared unless a cell is clicked. 
+The major problem I faced was indicating a winner. If there is a winner, a cell has to be clicked for the winner to be announced which is bad. The same problem applies to the ~~``checkDraw()``~~ function i.e A draw can't be declared unless a cell is clicked.
 
-  The reason for this is the ``checkWin()`` and ``checkDraw()`` function is run with a click event listener in each grid cell. So unless a cell is clicked, the function won't run
+  The reason for this is the ``checkWin()`` and ~~``checkDraw()``~~ function is run with a click event listener in each grid cell. So unless a cell is clicked, the function won't run
   I am currently thinking of a solution. 
+  I solved the problem of declaring a winner by adding a winner indicator and checking if the winner indicator is activated a winner should be declared.
+  But the problem of a draw being announced is still present
 
 ## Areas to Improve 
-  - Replace the ``setInterval()`` and ``setTimeout()`` solution with a better solution
+  - ~~Replace the ``setInterval()`` and ``setTimeout()`` solution with a better solution~~
   - Add a better UI design for the game
   - Add more functionality like a restart button, score counter and a few more.
 
