@@ -1,7 +1,7 @@
 const gridCells = Array.from(document.querySelectorAll('.cell'));
 const displayText = document.querySelector('.display-text');
-let [playerX, playerO] = ['X', 'O']
-let currentPlayer = 'X'
+let [playerX, playerO] = ['X', 'O'];
+let currentPlayer = 'X';
 
 
 const winningCombo = [
@@ -40,13 +40,13 @@ function checkWin(num) {
 
 
 gridCells.forEach((value, index, num) => {
-  
+
 
   value.addEventListener('click', (e) => {
     let winner = checkWin(num);
     // console.log(checkWin(num));
 
-    if (winner !== undefined) {
+    if (winner) {
       return;
 
     } else {
@@ -56,10 +56,10 @@ gridCells.forEach((value, index, num) => {
     if (value.style.backgroundColor === 'rgba(204, 204, 204, 0.3)') {
       displayText.textContent = `${value.textContent} wins`
     }
-   
   })
   
 })
+
 
 
 
