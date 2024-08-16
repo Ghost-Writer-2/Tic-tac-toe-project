@@ -1,5 +1,6 @@
 const gridCells = Array.from(document.querySelectorAll('.cell'));
 const displayText = document.querySelector('.display-text');
+const restartBtn = document.querySelector('.js-restart');
 let [playerX, playerO] = ['X', 'O'];
 let currentPlayer = 'X';
 
@@ -40,6 +41,14 @@ function checkWin(num) {
 
 // game algorithm
 gridCells.forEach((value, index, num) => {
+  
+  // restart button
+  restartBtn.addEventListener('click', () => {
+    value.textContent = '';
+    currentPlayer = playerX;
+    value.style.backgroundColor = '';
+    displayText.textContent = '';
+  })
 
 
   value.addEventListener('click', () => {
@@ -108,5 +117,6 @@ function checkDraw() {
     return false;
   }
 }
+
 
 
