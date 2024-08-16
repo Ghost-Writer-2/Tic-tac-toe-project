@@ -15,7 +15,7 @@ const winningCombo = [
   [2, 4, 6]
 ];
 
-
+// check for winner
 function checkWin(num) {
   let winner;
   
@@ -25,12 +25,12 @@ function checkWin(num) {
     // check player X
     if ((num[a].textContent === playerX) && ((num[b].textContent === num[a].textContent) && num[c].textContent === num[a].textContent)) {
       winner = 'playerX';
-      endGame(num[a], num[b], num[c], winner);
+      showWin(num[a], num[b], num[c], winner);
 
     // check player O
     } else if ((num[a].textContent === playerO) && ((num[b].textContent === num[a].textContent) && num[c].textContent === num[a].textContent)) {
       winner = 'playerO';
-      endGame(num[a], num[b], num[c], winner);
+      showWin(num[a], num[b], num[c], winner);
     }
   }
 
@@ -38,15 +38,14 @@ function checkWin(num) {
 }
 
 
-
+// game algorithm
 gridCells.forEach((value, index, num) => {
 
 
-  value.addEventListener('click', (e) => {
+  value.addEventListener('click', () => {
     let winner = checkWin(num);
-    // console.log(checkWin(num));
-    console.log(gridCells.every(isDraw))
 
+    // returns if there is a winner to prevent a cell from running playGame()
     if (winner) {
       return;
 
@@ -54,6 +53,7 @@ gridCells.forEach((value, index, num) => {
       playGame(value, num);
     }
     
+    // Indicator for win or draw case
     if (value.style.backgroundColor === 'rgba(204, 204, 204, 0.3)') {
       displayText.textContent = `${value.textContent} wins`
     } else {
@@ -65,7 +65,7 @@ gridCells.forEach((value, index, num) => {
 
 
 
-
+// gamw logic
 function playGame(value, num) {
   if (value.textContent === '') {
     value.textContent = currentPlayer;
@@ -85,7 +85,8 @@ function playGame(value, num) {
   }
 }
 
-function endGame(valueA, valueB, valueC) {
+// winner indicator
+function showWin(valueA, valueB, valueC) {
   valueA.style.backgroundColor = 'rgba(204, 204, 204, 0.3)';
   valueB.style.backgroundColor = 'rgba(204, 204, 204, 0.3)';
   valueC.style.backgroundColor = 'rgba(204, 204, 204, 0.3)';
@@ -93,18 +94,19 @@ function endGame(valueA, valueB, valueC) {
 
 
 
-// console.log(checkDraw());
-
+// check for draw
 function checkDraw() {
   if (gridCells.every(isDraw)) {
     displayText.textContent = `Game is a tie`
   } 
-}
 
-function isDraw(value) {
-  if (value.textContent !== '') {
-    return true;
+  function isDraw(value) {
+    if (value.textContent !== '') {
+      return true;
+    }
+  
+    return false;
   }
-
-  return false;
 }
+
+
