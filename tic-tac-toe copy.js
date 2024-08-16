@@ -45,6 +45,7 @@ gridCells.forEach((value, index, num) => {
   value.addEventListener('click', (e) => {
     let winner = checkWin(num);
     // console.log(checkWin(num));
+    console.log(gridCells.every(isDraw))
 
     if (winner) {
       return;
@@ -55,6 +56,8 @@ gridCells.forEach((value, index, num) => {
     
     if (value.style.backgroundColor === 'rgba(204, 204, 204, 0.3)') {
       displayText.textContent = `${value.textContent} wins`
+    } else {
+      checkDraw();
     }
   })
   
@@ -86,4 +89,22 @@ function endGame(valueA, valueB, valueC) {
   valueA.style.backgroundColor = 'rgba(204, 204, 204, 0.3)';
   valueB.style.backgroundColor = 'rgba(204, 204, 204, 0.3)';
   valueC.style.backgroundColor = 'rgba(204, 204, 204, 0.3)';
+}
+
+
+
+// console.log(checkDraw());
+
+function checkDraw() {
+  if (gridCells.every(isDraw)) {
+    displayText.textContent = `Game is a tie`
+  } 
+}
+
+function isDraw(value) {
+  if (value.textContent !== '') {
+    return true;
+  }
+
+  return false;
 }
