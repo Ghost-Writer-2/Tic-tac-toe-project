@@ -155,7 +155,82 @@
     border: 5px solid black;
     text-align: center;
     width: 100%;
-    height: min(10rem, 20vh);
+    height: min(10rem, 2 0vh);
+    cursor: pointer;
+    font-size: 4rem;
+    font-family: var(--font-fam);
+    font-weight: var(--font-weight);
+    font-style: var(--font-style);
+    transition: background-color 0.3s;
+  }
+
+  .first,
+  .fourth,
+  .seventh,
+  .third,
+  .sixth,
+  .ninth {
+    border-right: none;
+    border-left: none;
+  }
+
+
+  .first,
+  .second,
+  .third,
+  .seventh,
+  .eight,
+  .ninth {
+    border-top: none;
+    border-bottom: none;
+  }
+
+  .display-text,
+  .game-title {
+    font-style: normal;
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+
+  .display-text {
+    margin-bottom: 50px;
+  }
+}
+
+@media (max-width: 720px){
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  } 
+
+  body {
+    font-family: Arial;
+    background-color: whitesmoke;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
+    min-height: 100vh;
+    min-width: 100vw;
+  }
+
+  .game-board {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    justify-content: center;
+    width: min(90vw, 600px);
+  }
+
+  .cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 5px solid black;
+    text-align: center;
+    width: 100%;
+    height: min(10rem, 2 0vh);
     cursor: pointer;
     font-size: 4rem;
     font-family: var(--font-fam);
